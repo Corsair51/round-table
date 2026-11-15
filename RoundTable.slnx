@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docs/architecture.md" />
+    <File Path="docs/coding-standards.md" />
+    <File Path="docs/issue-roles.md" />
+    <File Path="docs/mvp-non-negotiables.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/RoundTable.Application/RoundTable.Application.csproj" />
     <Project Path="src/RoundTable.Domain/RoundTable.Domain.csproj" />
