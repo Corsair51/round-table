@@ -30,22 +30,22 @@ User Prompt
 ## Architecture & Solution Layout
 Built with strict Domain-Driven Design (DDD) boundaries so the orchestration engine remains completely decoupled from specific LLM SDKs:
 
-* RoundTable.Domain — Pure C# .NET 10.0 domain entities, value objects (RoundTableSession, CouncilSeat, DraftArtifact, PeerCritique, SeatOutcome), and the IAgentParticipant port. Zero external SDK dependencies.
+- RoundTable.Domain — Pure C# .NET 10.0 domain entities, value objects (RoundTableSession, CouncilSeat, DraftArtifact, PeerCritique, SeatOutcome), and the IAgentParticipant port. Zero external SDK dependencies.
 
-* RoundTable.Application — The deterministic 3-stage state machine (FanOut → CrossCritique → Synthesize), structured adversarial critique prompts, per-agent timeout enforcement, and fault-isolation logic.
+- RoundTable.Application — The deterministic 3-stage state machine (FanOut → CrossCritique → Synthesize), structured adversarial critique prompts, per-agent timeout enforcement, and fault-isolation logic.
 
-* RoundTable.Infrastructure — Thin adapters implementing IAgentParticipant for Google Gemini (Google.GenAI) and GitHub Copilot (GitHub.Copilot.SDK).
+- RoundTable.Infrastructure — Thin adapters implementing IAgentParticipant for Google Gemini (Google.GenAI) and GitHub Copilot (GitHub.Copilot.SDK).
 
-* RoundTable.Web — Minimal Blazor 10.0 side-by-side workbench displaying initial drafts, cross-critiques, and final revisions.
+- RoundTable.Web — Minimal Blazor 10.0 side-by-side workbench displaying initial drafts, cross-critiques, and final revisions.
 
-* RoundTable.Application.Tests — Deterministic xUnit + NSubstitute unit tests covering orchestration flow, timeouts, and partial-result handling.
+- RoundTable.Application.Tests — Deterministic xUnit + NSubstitute unit tests covering orchestration flow, timeouts, and partial-result handling.
 
 ## Prerequisites & Local Setup
-* .NET 10.0 SDK
+- .NET 10.0 SDK
 
-* A personal Gemini API Key
+- A personal Gemini API Key
 
-* A personal GitHub Copilot account authenticated via the Copilot CLI (copilot login)
+- A personal GitHub Copilot account authenticated via the Copilot CLI (copilot login)
 
 ## Secret Configuration
 Never commit API keys or tokens to source control. Configure secrets locally via dotnet user-secrets inside the RoundTable.Web project:
