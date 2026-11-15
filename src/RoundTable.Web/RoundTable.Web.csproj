@@ -5,6 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+    <RootNamespace>CorsairSolutions.RoundTable.Web</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RoundTable.Application\RoundTable.Application.csproj" />
+    <ProjectReference Include="..\RoundTable.Infrastructure\RoundTable.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using RoundTable.Web.Components;
+using CorsairSolutions.RoundTable.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
