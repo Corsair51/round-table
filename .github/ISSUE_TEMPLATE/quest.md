@@ -9,8 +9,8 @@ assignees: ""
 ## Description
 
 ## Acceptance Criteria
-- [ ] Follows `Coding-Standards.md` (regions, block-scoped namespaces/usings, `Async` suffixes, `AssertionScope`)
-- [ ] Verified against `MVP-NonNegotiables.md` ("Do we need this to prove the RoundTable concept?")
+- [ ] Follows `coding-standards.md`
+- [ ] Verified against `mvp-non-negotiables.md`
 - [ ] Unit tests passing
 
 ## Out of Scope
