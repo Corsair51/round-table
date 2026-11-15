@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RoundTable.Application/RoundTable.Application.csproj" />
+    <Project Path="src/RoundTable.Domain/RoundTable.Domain.csproj" />
+    <Project Path="src/RoundTable.Infrastructure/RoundTable.Infrastructure.csproj" />
+    <Project Path="src/RoundTable.Web/RoundTable.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RoundTable.Application.Tests/RoundTable.Application.Tests.csproj" />
+  </Folder>
+</Solution>
