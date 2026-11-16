@@ -26,10 +26,10 @@ namespace CorsairSolutions.RoundTable.Domain.Tests
         [Theory]
         [InlineData("")]
         [InlineData("   ")]
-        public void Constructor_WithWhitespaceSeatId_ThrowsArgumentException(string seatId)
+        public void Constructor_WithWhitespaceSeatId_ThrowsArgumentException(string invalidSeatId)
         {
 
-            Action act = () => new CouncilSeat(null!, "Gemini", "Architect", "Charter");
+            Action act = () => new CouncilSeat(invalidSeatId, "Gemini", "Architect", "Charter");
             act.Should().Throw<ArgumentNullException>().WithParameterName("seatId");
         }
 

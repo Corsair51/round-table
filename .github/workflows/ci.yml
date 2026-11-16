@@ -35,13 +35,15 @@ jobs:
           dotnet test RoundTable.slnx
           --configuration Release
           --no-build
-          -- --coverage --coverage-output-format cobertura --report-trx -results-directory ./TestResults
+          --collect:"XPlat Code Coverage"
+          --logger "trx;LogFileName=test-results.trx"
+          --results-directory ./TestResults
 
-      - name: Publicsh Test Results (Azure DevOps-style UI)
+      - name: Publish Test Results (Azure DevOps-style UI)
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: xUnit Tests Results
+          name: xUnit Test Results
           path: './TestResults/**/*.trx'
           reporter: dotnet-trx
 
@@ -57,9 +59,9 @@ jobs:
         if: always()
         run: cat ./CoverageReport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
 
-      - name: Upload coverage artifact
+      - name: Upload HTML Coverage Report Artifact
         if: always()
         uses: actions/upload-artifact@v4
-        with: 
-          name: coverlet-coverage-report
-          path: ./TestResults/**/coverage.cobertura.xml
+        with:
+          name: html-code-coverage-report
+          path: ./CoverageReport
