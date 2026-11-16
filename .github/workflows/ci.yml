@@ -4,7 +4,12 @@ on:
   push:
     branches: [ main, feature/* ]
   pull_request:
-    branches: [ main, feature/* ]
+    branches: [ main ]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
   build-and-test:
@@ -25,14 +30,32 @@ jobs:
       - name: Build solution
         run: dotnet build RoundTable.slnx --configuration Release --no-restore
 
-      - name: Run tests
+      - name: Run unit tests with coverage and TRX reporting
         run: >
           dotnet test RoundTable.slnx
           --configuration Release
           --no-build
-          --verbosity normal
-          --collect:"XPlat Code Coverage"
-          --results-directory ./TestResults
+          -- --coverage --coverage-output-format cobertura --report-trx -results-directory ./TestResults
+
+      - name: Publicsh Test Results (Azure DevOps-style UI)
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: xUnit Tests Results
+          path: './TestResults/**/*.trx'
+          reporter: dotnet-trx
+
+      - name: Generate HTML Code Coverage Report
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5
+        if: always()
+        with:
+          reports: './TestResults/**/coverage.cobertura.xml'
+          targetdir: './CoverageReport'
+          reporttypes: 'HtmlInline_AzurePipelines;MarkdownSummaryGithub'
+
+      - name: Append Coverage Summary to GitHub Job Summary
+        if: always()
+        run: cat ./CoverageReport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
 
       - name: Upload coverage artifact
         if: always()
