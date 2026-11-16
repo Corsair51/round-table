@@ -13,5 +13,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/RoundTable.Application.Tests/RoundTable.Application.Tests.csproj" />
+    <Project Path="tests/RoundTable.Domain.Tests/RoundTable.Domain.Tests.csproj" />
   </Folder>
 </Solution>
