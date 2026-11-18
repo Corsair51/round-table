@@ -30,7 +30,7 @@ namespace CorsairSolutions.RoundTable.Domain.Tests
         {
 
             Action act = () => new CouncilSeat(invalidSeatId, "Gemini", "Architect", "Charter");
-            act.Should().Throw<ArgumentNullException>().WithParameterName("seatId");
+            act.Should().Throw<ArgumentException>().WithParameterName("seatId");
         }
 
         [Theory]

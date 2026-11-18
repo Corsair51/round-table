@@ -32,14 +32,17 @@ jobs:
 
       - name: Run unit tests with coverage and TRX reporting
         run: >
-          dotnet test RoundTable.slnx
+          dotnet test --solution RoundTable.slnx
           --configuration Release
           --no-build
-          --collect:"XPlat Code Coverage"
-          --logger "trx;LogFileName=test-results.trx"
+          --
+          --coverage
+          --coverage-output-format cobertura
+          --report-trx
+          --report-trx-filename test-results.trx
           --results-directory ./TestResults
 
-      - name: Publish Test Results (Azure DevOps-style UI)
+      - name: Publish Test Results
         uses: dorny/test-reporter@v1
         if: always()
         with:
@@ -51,7 +54,7 @@ jobs:
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         if: always()
         with:
-          reports: './TestResults/**/coverage.cobertura.xml'
+          reports: './TestResults/**/*.cobertura.xml'
           targetdir: './CoverageReport'
           reporttypes: 'HtmlInline_AzurePipelines;MarkdownSummaryGithub'
 
